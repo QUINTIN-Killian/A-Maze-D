@@ -3,7 +3,7 @@
 ** undefined
 ** File description:
 ** free multiple word array pointers
-** mini_printf
+** multiple_free_word_array
 */
 
 #include "my.h"

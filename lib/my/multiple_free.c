@@ -2,8 +2,8 @@
 ** EPITECH PROJECT, 2023
 ** undefined
 ** File description:
-** free multiple pointers
-** mini_printf
+** free multiple strings
+** multiple_free
 */
 
 #include "my.h"
@@ -11,13 +11,13 @@
 void multiple_free(int nb_free, ...)
 {
     va_list args;
-    void *ptr;
+    char *str;
 
     va_start(args, nb_free);
     for (int i = 0; i < nb_free; i++) {
-        ptr = va_arg(args, void *);
-        if (ptr != NULL) {
-            free(ptr);
+        str = va_arg(args, char *);
+        if (str != NULL) {
+            free(str);
         }
     }
     va_end(args);
