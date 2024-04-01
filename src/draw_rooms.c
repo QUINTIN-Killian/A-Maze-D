@@ -2,8 +2,8 @@
 ** EPITECH PROJECT, 2024
 ** amazed
 ** File description:
-** main file
-** main
+** Drawing rooms
+** draw_rooms
 */
 
 #include "../include/amazed.h"
