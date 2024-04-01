@@ -42,6 +42,8 @@ char *my_scanf(void);
 //file.c :
 void get_file(amazed_t *amazed);
 void del_blank_lines(char **tab);
+void del_comments(char **tab);
+bool multiple_flags(char **tab);
 
 //functions.c :
 void free_linked_room(linked_room_t *node);

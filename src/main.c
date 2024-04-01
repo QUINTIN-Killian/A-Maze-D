@@ -18,8 +18,10 @@ static bool init_struct(amazed_t *amazed)
     if (amazed->file == NULL)
         return False;
     amazed->file_ref = my_tabdup(amazed->file);
+    del_comments(amazed->file);
     del_blank_lines(amazed->file);
-    if (amazed->file == NULL || amazed->file[0] == NULL)
+    if (amazed->file == NULL || amazed->file[0] == NULL ||
+    multiple_flags(amazed->file))
         return False;
     return True;
 }
