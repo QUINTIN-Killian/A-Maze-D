@@ -7,9 +7,18 @@
 ##
 
 CC	=	gcc
-SRC	=	$(wildcard src/*.c)
-OBJ := $(SRC:src/%.c=bin/%.o)
+
+SRC	=	src/draw_robots.c	\
+		src/draw_rooms.c	\
+		src/file.c	\
+		src/functions.c	\
+		src/main.c	\
+		src/my_scanf.c
+
+OBJ	=	$(SRC:src/%.c=bin/%.o)
+
 CFLAGS	=	-g3 -W -Wall
+
 EXEC	=	amazed
 
 all:	compile_lib $(EXEC)

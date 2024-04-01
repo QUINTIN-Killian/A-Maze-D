@@ -7,10 +7,15 @@
 ##
 
 CC	=	gcc
+
 SRC	=	$(wildcard *.c)
-OBJ := $(SRC:%.c=bin/%.o)
+
+OBJ	=	$(SRC:%.c=bin/%.o)
+
 CFLAGS	=	-g3 -W -Wall
+
 H_NAME	=	my.h
+
 LIB_NAME	=	libmy.a
 
 all:	$(LIB_NAME)
