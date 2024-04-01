@@ -26,7 +26,7 @@ bool multiple_flags(char **tab)
         if (is_nb_robot(tab[i]))
             count_nb_robot++;
     }
-    return count_start == 1 && count_end == 1 && count_nb_robot == 1;
+    return count_start != 1 || count_end != 1 || count_nb_robot != 1;
 }
 
 bool check_room_after_flag(char **tab)
