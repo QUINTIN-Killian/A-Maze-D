@@ -43,6 +43,7 @@ char *my_scanf(void);
 void get_file(amazed_t *amazed);
 void del_blank_lines(char **tab);
 void del_comments(char **tab);
+int get_nb_robot(char **tab);
 
 //error_handling.c :
 bool multiple_flags(char **tab);
@@ -63,5 +64,8 @@ bool is_flag(char *str);
 bool is_nb_robot(char *str);
 bool is_room(char *str);
 bool is_tunnel(char *str);
+
+//end.c :
+void print_end(amazed_t *amazed);
 
 #endif

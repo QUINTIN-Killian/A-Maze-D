@@ -114,3 +114,11 @@ void del_comments(char **tab)
         }
     }
 }
+
+int get_nb_robot(char **tab)
+{
+    for (int i = 0; i < my_strlen_array(tab); i++)
+        if (is_nb_robot(tab[i]))
+            return convert_str_in_int(tab[i]);
+    return -1;
+}

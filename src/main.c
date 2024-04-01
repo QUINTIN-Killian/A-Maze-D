@@ -5,6 +5,11 @@
 ** main file
 ** main
 */
+/*
+NOTES ET OBJECTIFS :
+    - vérifier s'il y a une seule room après ##start, plusieurs
+    après ##end et aucune autre room à un autre endroit
+*/
 
 #include "../include/amazed.h"
 
@@ -50,7 +55,8 @@ int main(void)
         destroy_struct(&amazed);
         return 84;
     }
-    print_word_array(amazed.file);
+    amazed.nb_robot = get_nb_robot(amazed.file);
+    print_end(&amazed);
     destroy_struct(&amazed);
     return 0;
 }
