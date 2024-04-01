@@ -6,8 +6,7 @@
 ** main
 */
 
-#include "include/my.h"
-#include "include/amazed.h"
+#include "../include/amazed.h"
 
 int main(void)
 {
