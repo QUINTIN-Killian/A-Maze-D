@@ -9,7 +9,12 @@
 #include "include/my.h"
 #include "include/amazed.h"
 
-int main(int ac, char **av)
+int main(void)
 {
+    amazed_t amazed;
+
+    get_file(&amazed);
+    print_word_array(amazed.file);
+    free_word_array(amazed.file);
     return 0;
 }

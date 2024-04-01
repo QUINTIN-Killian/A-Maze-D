@@ -12,10 +12,12 @@ OBJ	=	$(SRC:.c=.o)
 CFLAGS	=	-g3 -W -Wall
 EXEC	=	amazed
 
-all:	$(EXEC)
+all:	compile_lib $(EXEC)
+
+compile_lib:
+	make -C lib/my
 
 $(EXEC):	$(OBJ)
-	make -C lib/my
 	$(CC) -o $(EXEC) $(OBJ) -L. -lmy $(CFLAGS)
 
 %.o:	%.c
@@ -31,4 +33,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all compile_lib clean fclean re

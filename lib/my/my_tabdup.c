@@ -10,8 +10,11 @@
 
 char **my_tabdup(char **tab)
 {
-    char **ans = malloc(sizeof(char *) * (my_strlen_array(tab) + 1));
+    char **ans;
 
+    if (tab == NULL)
+        return NULL;
+    ans = malloc(sizeof(char *) * (my_strlen_array(tab) + 1));
     for (int i = 0; i < my_strlen_array(tab); i++)
         ans[i] = my_strdup(tab[i]);
     ans[my_strlen_array(tab)] = NULL;

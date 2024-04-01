@@ -19,15 +19,22 @@ typedef struct robot_s {
 } robot_t;
 
 typedef struct linked_room_s {
-    int id;
+    char *name;
     struct linked_room_s *next;
     int *close_rooms;
 } linked_room_t;
 
 typedef struct amazed_s {
     int nb_robot;
+    char **file;
     robot_t **tab_robot;
     linked_room_t *room;
 } amazed_t;
+
+//my_scanf :
+char *my_scanf(void);
+
+//file.c :
+void get_file(amazed_t *amazed);
 
 #endif
