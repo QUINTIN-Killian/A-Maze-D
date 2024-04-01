@@ -10,10 +10,10 @@
     #define AMAZED_H_
     #include "my.h"
 
-typedef enum boolean {
+typedef enum boolean_t {
     False,
     True
-} bool;
+} boolean;
 
 typedef struct robot_s {
     int current_room;
@@ -21,6 +21,7 @@ typedef struct robot_s {
 
 typedef struct linked_room_s {
     char *name;
+    int room_id;
     struct linked_room_s *next;
     int *close_rooms;
 } linked_room_t;
@@ -37,5 +38,6 @@ char *my_scanf(void);
 
 //file.c :
 void get_file(amazed_t *amazed);
+int draw_rooms(amazed_t *amazed);
 
 #endif
