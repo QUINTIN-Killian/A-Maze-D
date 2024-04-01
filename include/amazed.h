@@ -8,6 +8,7 @@
 
 #ifndef AMAZED_H_
     #define AMAZED_H_
+    #include "my.h"
 
 typedef enum boolean {
     False,

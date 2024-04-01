@@ -1,36 +1,34 @@
 ##
 ## EPITECH PROJECT, 2023
-## undefined
+## Makefile
 ## File description:
-## Makefile to compile files with the lib.
 ## Makefile
 ##
 
-CC	=	gcc
-SRC	=	$(wildcard *.c)
-OBJ	=	$(SRC:.c=.o)
-CFLAGS	=	-g3 -W -Wall
-EXEC	=	amazed
+SRC	=	$(wildcard src/*.c)
 
-all:	compile_lib $(EXEC)
+OBJS =	$(SRC:.c=.o)
 
-compile_lib:
-	make -C lib/my
+NAME	=	amazed
 
-$(EXEC):	$(OBJ)
-	$(CC) -o $(EXEC) $(OBJ) -L. -lmy $(CFLAGS)
+LIB	=	-L lib/my/ -lmy
 
-%.o:	%.c
-	$(CC) -c $< $(CFLAGS)
+HSRC	=	include/amazed.h
+
+CFLAGS	=	-g3
+
+all: create
+
+create: ${OBJS}
+		make -C lib/my
+		gcc -o $(NAME) $(OBJS) -I ${HSRC} ${LIB}
 
 clean:
-	rm -f $(OBJ)
-	make clean -C lib/my
+		rm -f lib/my/*.o
+		rm -f src/*.o
 
-fclean:	clean
-	rm -f $(EXEC)
-	make fclean -C lib/my
+fclean:clean
+		rm -f lib/my/libmy.a
+		rm -f $(NAME)
 
-re:	fclean all
-
-.PHONY:	all compile_lib clean fclean re
+re: fclean all
