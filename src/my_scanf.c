@@ -14,8 +14,10 @@ char *my_scanf(void)
     char *ans = NULL;
     size_t n = 0;
 
-    if (getline(&lineptr, &n, stdin) == -1)
+    if (getline(&lineptr, &n, stdin) == -1) {
+        free(lineptr);
         return NULL;
+    }
     if (my_strlen(lineptr) != 1) {
         ans = my_strndup(lineptr, my_strlen(lineptr) - 1);
         free(lineptr);
