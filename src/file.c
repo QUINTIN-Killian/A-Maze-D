@@ -114,23 +114,3 @@ void del_comments(char **tab)
         }
     }
 }
-
-bool multiple_flags(char **tab)
-{
-    int count_start = 0;
-    int count_end = 0;
-
-    for (int i = 0; i < my_strlen_array(tab); i++) {
-        if (my_strcmp(tab[i], "##start") == 0) {
-            count_start++;
-            continue;
-        }
-        if (my_strcmp(tab[i], "##end") == 0) {
-            count_end++;
-            continue;
-        }
-    }
-    if (count_start != 1 || count_end != 1)
-        return True;
-    return False;
-}

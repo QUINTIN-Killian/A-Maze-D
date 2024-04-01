@@ -43,7 +43,11 @@ char *my_scanf(void);
 void get_file(amazed_t *amazed);
 void del_blank_lines(char **tab);
 void del_comments(char **tab);
+
+//error_handling.c :
 bool multiple_flags(char **tab);
+bool check_room_after_flag(char **tab);
+bool check_file_content(char **tab);
 
 //functions.c :
 void free_linked_room(linked_room_t *node);
@@ -53,5 +57,11 @@ int draw_rooms(amazed_t *amazed);
 
 //draw_robots.c :
 int draw_robots(amazed_t *amazed);
+
+//recognition.c :
+bool is_flag(char *str);
+bool is_nb_robot(char *str);
+bool is_room(char *str);
+bool is_tunnel(char *str);
 
 #endif

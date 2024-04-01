@@ -21,7 +21,8 @@ static bool init_struct(amazed_t *amazed)
     del_comments(amazed->file);
     del_blank_lines(amazed->file);
     if (amazed->file == NULL || amazed->file[0] == NULL ||
-    multiple_flags(amazed->file))
+    multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||
+    !check_file_content(amazed->file))
         return False;
     return True;
 }
