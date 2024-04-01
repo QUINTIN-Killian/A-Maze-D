@@ -6,7 +6,7 @@
 ** my_scanf
 */
 
-#include "../include/amazed.h"
+#include "include/amazed.h"
 
 char *my_scanf(void)
 {

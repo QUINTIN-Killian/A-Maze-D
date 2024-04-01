@@ -6,8 +6,9 @@
 ** draw_rooms
 */
 
-#include "../include/amazed.h"
+#include "include/amazed.h"
 
+/*
 int draw_rooms(amazed_t *amazed)
 {
     linked_room_t *parse_rooms = amazed->room;
@@ -29,3 +30,4 @@ int draw_rooms(amazed_t *amazed)
     }
     return 0;
 }
+*/

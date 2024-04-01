@@ -6,7 +6,7 @@
 ** file
 */
 
-#include "../include/amazed.h"
+#include "include/amazed.h"
 
 void get_file(amazed_t *amazed)
 {

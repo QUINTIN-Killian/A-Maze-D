@@ -1,32 +1,33 @@
 ##
 ## EPITECH PROJECT, 2023
-## Makefile
+## undefined
 ## File description:
+## Makefile for mylib
 ## Makefile
 ##
 
+CC	=	gcc
 SRC	=	$(wildcard *.c)
+OBJ	=	$(SRC:.c=.o)
+H_NAME	=	my.h
+LIB_NAME	=	libmy.a
 
-OBJS =	$(SRC:.c=.o)
+all:	$(LIB_NAME)
 
-NAME	=	libmy.a
+$(LIB_NAME):	$(OBJ)
+	ar rc $(LIB_NAME) $(OBJ)
+	cp $(LIB_NAME) ../..
+	cp $(H_NAME) ../../include
 
-LIB	=	-L
-
-CFLAGS	=	-g3
-
-all: create copy
-
-create: ${OBJS}
-		ar rc $(NAME) $(OBJS)
-
-copy: ${NAME}
-	cp my.h ../../include/
+%.o:	%.c
+	$(CC) -c $< -o $@
 
 clean:
-		rm -f *.o
+	rm -f $(OBJ)
 
-fclean:clean
-		rm -f $(NAME)
+fclean:	clean
+	rm -f $(LIB_NAME) ../../$(LIB_NAME)
 
-re: fclean all
+re:	fclean all
+
+.PHONY:	all clean fclean re

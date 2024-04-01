@@ -6,7 +6,7 @@
 ** main
 */
 
-#include "../include/amazed.h"
+#include "include/amazed.h"
 
 static bool init_struct(amazed_t *amazed)
 {

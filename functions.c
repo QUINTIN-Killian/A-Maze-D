@@ -6,7 +6,6 @@
 ** functions
 */
 
-#include "include/my.h"
 #include "include/amazed.h"
 
 void free_linked_room(linked_room_t *node)

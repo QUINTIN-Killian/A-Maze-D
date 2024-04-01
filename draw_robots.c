@@ -6,7 +6,7 @@
 ** draw_robots
 */
 
-#include "../include/amazed.h"
+#include "include/amazed.h"
 
 int draw_robots(amazed_t *amazed)
 {
