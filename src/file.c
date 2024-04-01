@@ -8,22 +8,33 @@
 
 #include "../include/amazed.h"
 
+static void add_line_in_tab(amazed_t *amazed, char **tmp, char *line)
+{
+    free_word_array(amazed->file);
+    amazed->file = malloc(sizeof(char *) * (my_strlen_array(tmp) + 2));
+    for (int i = 0; i < my_strlen_array(tmp); i++)
+        amazed->file[i] = my_strdup(tmp[i]);
+    amazed->file[my_strlen_array(tmp)] = my_strdup(line);
+    amazed->file[my_strlen_array(tmp) + 1] = NULL;
+}
+
 void get_file(amazed_t *amazed)
 {
-    char *line = "";
     char **tmp = NULL;
+    char *line = my_scanf();
 
     while (line != NULL) {
-        line = my_scanf();
+        tmp = separate_words(line, " \t\n");
+        if (tmp == NULL) {
+            free(line);
+            break;
+        }
+        free_word_array(tmp);
         tmp = my_tabdup(amazed->file);
-        free_word_array(amazed->file);
-        amazed->file = malloc(sizeof(char *) * (my_strlen_array(tmp) + 2));
-        for (int i = 0; i < my_strlen_array(tmp); i++)
-            amazed->file[i] = my_strdup(tmp[i]);
-        amazed->file[my_strlen_array(tmp)] = my_strdup(line);
-        amazed->file[my_strlen_array(tmp) + 1] = NULL;
+        add_line_in_tab(amazed, tmp, line);
         free_word_array(tmp);
         free(line);
+        line = my_scanf();
     }
 }
 
