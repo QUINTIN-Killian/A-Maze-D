@@ -16,6 +16,7 @@ typedef enum boolean_t {
 } boolean;
 
 typedef struct robot_s {
+    int robot_id;
     int current_room;
 } robot_t;
 
@@ -39,5 +40,6 @@ char *my_scanf(void);
 //file.c :
 void get_file(amazed_t *amazed);
 int draw_rooms(amazed_t *amazed);
+int draw_robots(amazed_t *amazed);
 
 #endif
