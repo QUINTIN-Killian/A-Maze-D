@@ -15,7 +15,7 @@ static int is_number(char a)
     return 0;
 }
 
-static int det_sign(char const *str, int *ind, int *neg)
+static void det_sign(char const *str, int *ind, int *neg)
 {
     while (str[*ind] == '-') {
         *neg = *neg + 1;

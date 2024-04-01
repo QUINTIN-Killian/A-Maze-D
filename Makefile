@@ -7,8 +7,8 @@
 ##
 
 CC	=	gcc
-SRC	=	$(wildcard *.c)
-OBJ	=	$(SRC:.c=.o)
+SRC	=	$(wildcard src/*.c)
+OBJ := $(SRC:src/%.c=bin/%.o)
 CFLAGS	=	-g3 -W -Wall
 EXEC	=	amazed
 
@@ -20,8 +20,8 @@ compile_lib:
 $(EXEC):	$(OBJ)
 	$(CC) -o $(EXEC) $(OBJ) -L. -lmy $(CFLAGS)
 
-%.o:	%.c
-	$(CC) -c $< $(CFLAGS)
+bin/%.o:	src/%.c
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	rm -f $(OBJ)

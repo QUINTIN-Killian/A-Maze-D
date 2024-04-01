@@ -11,7 +11,6 @@
 
 char *my_strndup(char const *src, int n)
 {
-    int len_src = my_strlen(src);
     char *str;
     int max;
 

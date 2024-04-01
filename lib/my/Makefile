@@ -8,7 +8,8 @@
 
 CC	=	gcc
 SRC	=	$(wildcard *.c)
-OBJ	=	$(SRC:.c=.o)
+OBJ := $(SRC:%.c=bin/%.o)
+CFLAGS	=	-g3 -W -Wall
 H_NAME	=	my.h
 LIB_NAME	=	libmy.a
 
@@ -19,8 +20,8 @@ $(LIB_NAME):	$(OBJ)
 	cp $(LIB_NAME) ../..
 	cp $(H_NAME) ../../include
 
-%.o:	%.c
-	$(CC) -c $< -o $@
+bin/%.o:	%.c
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	rm -f $(OBJ)
