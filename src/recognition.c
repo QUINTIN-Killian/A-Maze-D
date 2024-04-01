@@ -17,7 +17,17 @@ bool is_flag(char *str)
 
 bool is_nb_robot(char *str)
 {
-    if (str != NULL && my_strlen(str) == 1 && my_str_isnum(str))
+    char **tmp;
+
+    if (str == NULL)
+        return False;
+    tmp = separate_words_on_spaces(str);
+    if (tmp == NULL || my_strlen_array(tmp) != 1) {
+        free_word_array(tmp);
+        return False;
+    }
+    free_word_array(tmp);
+    if (my_str_isnum(str))
         return True;
     return False;
 }
