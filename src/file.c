@@ -13,7 +13,6 @@ void get_file(amazed_t *amazed)
     char *line = "";
     char **tmp = NULL;
 
-    amazed->file = NULL;
     while (line != NULL) {
         line = my_scanf();
         tmp = my_tabdup(amazed->file);
@@ -25,5 +24,31 @@ void get_file(amazed_t *amazed)
         amazed->file[my_strlen_array(tmp) + 1] = NULL;
         free_word_array(tmp);
         free(line);
+    }
+}
+
+static void backward_each_line(char **tab, int i)
+{
+    while (tab[i + 1] != NULL) {
+        free(tab[i]);
+        tab[i] = my_strdup(tab[i + 1]);
+        i++;
+    }
+    free(tab[i]);
+    tab[i] = NULL;
+    free(tab[i + 1]);
+}
+
+void del_blank_lines(char **tab)
+{
+    char **tmp;
+
+    for (int i = 0; i < my_strlen_array(tab); i++) {
+        tmp = separate_words(tab[i], " \t\n");
+        if (tmp == NULL) {
+            backward_each_line(tab, i);
+            i--;
+        }
+        free_word_array(tmp);
     }
 }

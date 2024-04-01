@@ -22,14 +22,16 @@ typedef struct robot_s {
 
 typedef struct linked_room_s {
     char *name;
-    int room_id;
+    int x;
+    int y;
     struct linked_room_s *next;
-    int *close_rooms;
+    char **close_rooms;
 } linked_room_t;
 
 typedef struct amazed_s {
     int nb_robot;
     char **file;
+    char **file_ref;
     robot_t **tab_robot;
     linked_room_t *room;
 } amazed_t;
@@ -39,6 +41,10 @@ char *my_scanf(void);
 
 //file.c :
 void get_file(amazed_t *amazed);
+void del_blank_lines(char **tab);
+
+//functions.c :
+void free_linked_room(linked_room_t *node);
 int draw_rooms(amazed_t *amazed);
 int draw_robots(amazed_t *amazed);
 

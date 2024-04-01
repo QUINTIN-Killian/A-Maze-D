@@ -64,11 +64,8 @@ char **separate_words_on_spaces(char const *str)
     int start = 0;
     int nb_words = det_nb_word(str);
 
-    if (my_strlen(str) == 0 || nb_words == 0) {
-        tab = malloc(sizeof(char *));
-        tab[0] = NULL;
-        return tab;
-    }
+    if (my_strlen(str) == 0 || nb_words == 0)
+        return NULL;
     tab = malloc(sizeof(char *) * (nb_words + 1));
     while (start < my_strlen(str) && (str[start] == ' ' ||
     str[start] == '\t')) {
