@@ -18,23 +18,85 @@ static void add_line_in_tab(amazed_t *amazed, char **tmp, char *line)
     amazed->file[my_strlen_array(tmp) + 1] = NULL;
 }
 
+static int get_ind_comment(char *line)
+{
+    int ind = 0;
+
+    for (int i = 0; i < my_strlen(line); i++) {
+        if (line[i] != ' ' && line[i] != '\t')
+            ind = i;
+        if (line[i] == '#')
+            return ind;
+    }
+    return -1;
+}
+
+static char *get_start_end_flags(char *line)
+{
+    if (my_strncmp(line, "##start", 7) == 0) {
+        free(line);
+        return my_strdup("##start");
+    }
+    if (my_strncmp(line, "##end", 5) == 0) {
+        free(line);
+        return my_strdup("##end");
+    }
+    return NULL;
+}
+
+char *del_comments(char *line)
+{
+    int ind;
+    char *tmp = get_start_end_flags(line);
+
+    if (tmp != NULL)
+        return tmp;
+    ind = get_ind_comment(line);
+    if (ind == 0) {
+        free(line);
+        return NULL;
+    }
+    if (ind != -1 && ind != 0) {
+        tmp = parse_str(line, 0, ind);
+        free(line);
+        return tmp;
+    }
+    tmp = my_strdup(line);
+    free(line);
+    return tmp;
+}
+
+static char *edit_line(char *line)
+{
+    char *ans;
+    char **tmp = separate_words(line, " \t\n");
+
+    if (tmp == NULL) {
+        free(line);
+        return NULL;
+    }
+    free_word_array(tmp);
+    ans = del_comments(line);
+    if (ans == NULL)
+        return my_strdup(" ");
+    if (!is_flag(ans) && !is_nb_robot(ans) && !is_room(ans) && !is_tunnel(ans))
+        return NULL;
+    return ans;
+}
+
 void get_file(amazed_t *amazed)
 {
     char **tmp = NULL;
     char *line = my_scanf();
 
+    line = edit_line(line);
     while (line != NULL) {
-        tmp = separate_words(line, " \t\n");
-        if (tmp == NULL) {
-            free(line);
-            break;
-        }
-        free_word_array(tmp);
         tmp = my_tabdup(amazed->file);
         add_line_in_tab(amazed, tmp, line);
         free_word_array(tmp);
         free(line);
         line = my_scanf();
+        line = edit_line(line);
     }
 }
 
@@ -61,57 +123,6 @@ void del_blank_lines(char **tab)
             i--;
         }
         free_word_array(tmp);
-    }
-}
-
-static bool check_start_end_flags(char **tab, int i)
-{
-    char *tmp;
-
-    if (my_strncmp(tab[i], "##start", 7) == 0) {
-        tmp = parse_str(tab[i], 0, 7);
-        free(tab[i]);
-        tab[i] = my_strdup(tmp);
-        free(tmp);
-        return True;
-    }
-    if (my_strncmp(tab[i], "##end", 5) == 0) {
-        tmp = parse_str(tab[i], 0, 5);
-        free(tab[i]);
-        tab[i] = my_strdup(tmp);
-        free(tmp);
-        return True;
-    }
-    return False;
-}
-
-static int get_ind_comment(char *line)
-{
-    for (int i = 0; i < my_strlen(line); i++)
-        if (line[i] == '#')
-            return i;
-    return -1;
-}
-
-void del_comments(char **tab)
-{
-    int ind;
-    char *line_tmp;
-
-    for (int i = 0; i < my_strlen_array(tab); i++) {
-        if (check_start_end_flags(tab, i))
-            continue;
-        ind = get_ind_comment(tab[i]);
-        if (ind == 0) {
-            backward_each_line(tab, i);
-            i--;
-        }
-        if (ind != -1 && ind != 0) {
-            line_tmp = parse_str(tab[i], 0, ind);
-            free(tab[i]);
-            tab[i] = my_strdup(line_tmp);
-            free(line_tmp);
-        }
     }
 }
 

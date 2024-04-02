@@ -7,8 +7,7 @@
 */
 /*
 NOTES ET OBJECTIFS :
-    - vérifier s'il y a une seule room après ##start, plusieurs
-    après ##end et aucune autre room à un autre endroit
+    - vérifier si on retrouve le nom des rooms dans les rooms et les tunnels
 */
 
 #include "../include/amazed.h"
@@ -23,7 +22,6 @@ static bool init_struct(amazed_t *amazed)
     if (amazed->file == NULL)
         return False;
     amazed->file_ref = my_tabdup(amazed->file);
-    del_comments(amazed->file);
     del_blank_lines(amazed->file);
     if (amazed->file == NULL || amazed->file[0] == NULL ||
     multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||

@@ -42,7 +42,6 @@ char *my_scanf(void);
 //file.c :
 void get_file(amazed_t *amazed);
 void del_blank_lines(char **tab);
-void del_comments(char **tab);
 int get_nb_robot(char **tab);
 
 //error_handling.c :
