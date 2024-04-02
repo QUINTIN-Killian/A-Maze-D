@@ -20,20 +20,22 @@ typedef struct robot_s {
     int current_room;
 } robot_t;
 
-typedef struct linked_room_s {
+typedef struct room_s {
+    int id;
     char *name;
     int x;
     int y;
-    struct linked_room_s *next;
-    char **close_rooms;
-} linked_room_t;
+    int *close_rooms;
+} room_t;
 
 typedef struct amazed_s {
     int nb_robot;
+    int nb_rooms;
     char **file;
-    char **file_ref;
+    int id_start;
+    int id_end;
+    room_t **tab_room;
     robot_t **tab_robot;
-    linked_room_t *room;
 } amazed_t;
 
 //my_scanf :
@@ -48,9 +50,6 @@ int get_nb_robot(char **tab);
 bool multiple_flags(char **tab);
 bool check_room_after_flag(char **tab);
 bool check_file_content(char **tab);
-
-//functions.c :
-void free_linked_room(linked_room_t *node);
 
 //draw_rooms.c :
 int draw_rooms(amazed_t *amazed);

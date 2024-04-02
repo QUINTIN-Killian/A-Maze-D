@@ -15,13 +15,11 @@ NOTES ET OBJECTIFS :
 static bool init_struct(amazed_t *amazed)
 {
     amazed->file = NULL;
-    amazed->file_ref = NULL;
     amazed->tab_robot = NULL;
-    amazed->room = NULL;
+    amazed->tab_room = NULL;
     get_file(amazed);
     if (amazed->file == NULL)
         return False;
-    amazed->file_ref = my_tabdup(amazed->file);
     del_blank_lines(amazed->file);
     if (amazed->file == NULL || amazed->file[0] == NULL ||
     multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||
@@ -34,15 +32,16 @@ static void destroy_struct(amazed_t *amazed)
 {
     if (amazed->file != NULL)
         free_word_array(amazed->file);
-    if (amazed->file_ref != NULL)
-        free_word_array(amazed->file_ref);
     if (amazed->tab_robot != NULL) {
         for (int i = 0; amazed->tab_robot[i] != NULL; i++)
             free(amazed->tab_robot[i]);
         free(amazed->tab_robot);
     }
-    if (amazed->room != NULL)
-        free_linked_room(amazed->room);
+    if (amazed->tab_room != NULL) {
+        for (int i = 0; amazed->tab_room[i] != NULL; i++)
+            free(amazed->tab_room[i]);
+        free(amazed->tab_room);
+    }
 }
 
 int main(void)
