@@ -23,6 +23,7 @@ typedef struct robot_s {
 typedef struct linked_room_s {
     char *name;
     int room_id;
+    int h_distance;
     struct linked_room_s *next;
     int *close_rooms;
 } linked_room_t;
