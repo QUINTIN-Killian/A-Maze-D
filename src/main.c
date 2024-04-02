@@ -24,9 +24,10 @@ static bool init_struct(amazed_t *amazed)
     amazed->nb_robot = get_nb_robot(amazed->file);
     amazed->nb_room = get_nb_room(amazed->file);
     create_tab_room(amazed);
-    if (amazed->file == NULL || amazed->file[0] == NULL ||
-    multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||
-    !check_file_content(amazed->file) || !check_correct_tunnel(amazed))
+    if (amazed->file == NULL || amazed->file[0] == NULL || amazed->nb_robot
+    == 0 || amazed->nb_room < 2 || multiple_flags(amazed->file) ||
+    !check_room_after_flag(amazed->file) || !check_file_content(amazed->file)
+    || !is_unique_room(amazed->tab_room) || !check_correct_tunnel(amazed))
         return False;
     return True;
 }

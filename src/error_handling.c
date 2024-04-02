@@ -75,3 +75,19 @@ bool check_correct_tunnel(amazed_t *amazed)
             return False;
     return True;
 }
+
+static bool is_unique_room_aux(room_t **tab_room, int i)
+{
+    for (int j = i + 1; tab_room[j] != NULL; j++)
+        if (my_strcmp(tab_room[i]->name, tab_room[j]->name) == 0)
+            return False;
+    return True;
+}
+
+bool is_unique_room(room_t **tab_room)
+{
+    for (int i = 0; tab_room[i] != NULL; i++)
+        if (!is_unique_room_aux(tab_room, i))
+            return False;
+    return True;
+}
