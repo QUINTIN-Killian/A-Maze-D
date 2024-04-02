@@ -16,7 +16,8 @@ SRC	=	src/draw_robots.c	\
 		src/my_scanf.c	\
 		src/error_handling.c	\
 		src/recognition.c	\
-		src/end.c
+		src/end.c	\
+		src/room.c
 
 OBJ	=	$(SRC:src/%.c=bin/%.o)
 

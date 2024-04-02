@@ -21,6 +21,7 @@ typedef struct robot_s {
 } robot_t;
 
 typedef struct room_s {
+    int cost;
     int id;
     char *name;
     int x;
@@ -30,7 +31,7 @@ typedef struct room_s {
 
 typedef struct amazed_s {
     int nb_robot;
-    int nb_rooms;
+    int nb_room;
     char **file;
     int id_start;
     int id_end;
@@ -45,11 +46,14 @@ char *my_scanf(void);
 void get_file(amazed_t *amazed);
 void del_blank_lines(char **tab);
 int get_nb_robot(char **tab);
+int get_nb_room(char **tab);
 
 //error_handling.c :
 bool multiple_flags(char **tab);
 bool check_room_after_flag(char **tab);
 bool check_file_content(char **tab);
+bool check_correct_tunnel(amazed_t *amazed);
+bool is_unique_room(room_t **tab_room);
 
 //draw_rooms.c :
 int draw_rooms(amazed_t *amazed);
@@ -65,5 +69,10 @@ bool is_tunnel(char *str);
 
 //end.c :
 void print_end(amazed_t *amazed);
+
+//room.c :
+room_t *create_room(int id, char *name, int x, int y);
+void create_tab_room(amazed_t *amazed);
+void add_close_rooms(amazed_t *amazed);
 
 #endif
