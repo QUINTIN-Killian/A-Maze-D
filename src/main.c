@@ -7,7 +7,8 @@
 */
 /*
 NOTES ET OBJECTIFS :
-    - vérifier si chaque room est unique
+    - afficher avec la bonne mise en forme à la fin (voir
+    maps/labyrinth_error2)
 */
 
 #include "../include/amazed.h"
