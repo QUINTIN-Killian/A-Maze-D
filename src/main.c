@@ -12,24 +12,35 @@ NOTES ET OBJECTIFS :
 
 #include "../include/amazed.h"
 
+static bool error_handling_struct(amazed_t *amazed)
+{
+    if (amazed->file == NULL || amazed->file[0] == NULL) {
+        mini_fdprintf(2, "The file is empty after deleting useless lines.\n");
+        return False;
+    }
+    if (amazed->nb_robot == 0 || amazed->nb_room < 2 ||
+    multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||
+    !check_file_content(amazed->file) || !is_unique_room(amazed->tab_room) ||
+    !check_correct_tunnel(amazed))
+        return False;
+    return True;
+}
+
 static bool init_struct(amazed_t *amazed)
 {
     amazed->file = NULL;
     amazed->tab_robot = NULL;
     amazed->tab_room = NULL;
     get_file(amazed);
-    if (amazed->file == NULL)
+    if (amazed->file == NULL || amazed->file[0] == NULL) {
+        mini_fdprintf(2, "The file is empty after deleting useless lines.\n");
         return False;
+    }
     del_blank_lines(amazed->file);
     amazed->nb_robot = get_nb_robot(amazed->file);
     amazed->nb_room = get_nb_room(amazed->file);
     create_tab_room(amazed);
-    if (amazed->file == NULL || amazed->file[0] == NULL || amazed->nb_robot
-    == 0 || amazed->nb_room < 2 || multiple_flags(amazed->file) ||
-    !check_room_after_flag(amazed->file) || !check_file_content(amazed->file)
-    || !is_unique_room(amazed->tab_room) || !check_correct_tunnel(amazed))
-        return False;
-    return True;
+    return error_handling_struct(amazed);
 }
 
 static void destroy_struct(amazed_t *amazed)
