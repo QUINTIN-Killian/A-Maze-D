@@ -52,3 +52,26 @@ bool check_file_content(char **tab)
     }
     return True;
 }
+
+static bool check_correct_tunnel_aux(amazed_t *amazed, int i)
+{
+    int ans = 0;
+    char **line = separate_words(amazed->file[i], "-");
+
+    for (int j = 0; j < amazed->nb_room; j++) {
+        if (my_strcmp(line[0], amazed->tab_room[j]->name) == 0)
+            ans++;
+        if (my_strcmp(line[1], amazed->tab_room[j]->name) == 0)
+            ans++;
+    }
+    free_word_array(line);
+    return ans == 2;
+}
+
+bool check_correct_tunnel(amazed_t *amazed)
+{
+    for (int i = 0; i < my_strlen_array(amazed->file); i++)
+        if (is_tunnel(amazed->file[i]) && !check_correct_tunnel_aux(amazed, i))
+            return False;
+    return True;
+}
