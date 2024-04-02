@@ -73,5 +73,6 @@ void print_end(amazed_t *amazed);
 //room.c :
 room_t *create_room(int id, char *name, int x, int y);
 void create_tab_room(amazed_t *amazed);
+void add_close_rooms(amazed_t *amazed);
 
 #endif

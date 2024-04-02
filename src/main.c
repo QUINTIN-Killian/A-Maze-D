@@ -71,6 +71,7 @@ int main(void)
         destroy_struct(&amazed);
         return 84;
     }
+    add_close_rooms(&amazed);
     print_end(&amazed);
     destroy_struct(&amazed);
     return 0;
