@@ -60,6 +60,12 @@ bool is_tunnel(char *str)
         return False;
     }
     free_word_array(tmp);
+    tmp = separate_words(str, "-");
+    if (my_strlen_array(tmp) != 2) {
+        free_word_array(tmp);
+        return False;
+    }
+    free_word_array(tmp);
     for (int i = 0; i < my_strlen(str); i++)
         if (str[i] == '-')
             return True;
