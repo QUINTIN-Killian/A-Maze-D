@@ -8,16 +8,17 @@
 
 #include "../include/amazed.h"
 
-int compute_recursive(int cost, int pos, linked_room_t **rooms,
-    int number_of_rooms)
+int compute_recursive(int cost, int pos, room_t **rooms)
 {
     int *adjacent_rooms = rooms[pos]->close_rooms;
 
-    cost++;
+    if (rooms[pos]->cost == -1 || cost < rooms[pos]->cost) {
+        rooms[pos]->cost = cost;
+    }
     for (int i = 0; adjacent_rooms[i] != -1; i++) {
-        if (rooms[i]->cost == -1 || rooms[i]->cost > cost) {
-            rooms[i]->cost = cost;
-            compute_recursive(cost, adjacent_rooms[i], rooms, number_of_rooms);
+        if (rooms[adjacent_rooms[i]]->cost == -1 ||
+        rooms[adjacent_rooms[i]]->cost > cost) {
+            compute_recursive(cost + 1, adjacent_rooms[i], rooms);
         }
     }
     return 0;
@@ -25,10 +26,6 @@ int compute_recursive(int cost, int pos, linked_room_t **rooms,
 
 int compute_cost(amazed_t *amazed)
 {
-    int *values = malloc(sizeof(int) * 2);
-
-    values[0] = -1;
-    values[1] = amazed->final_room;
-    compute_recursive(-1, 0, amazed->room, amazed->n_rooms);
+    compute_recursive(0, amazed->id_end, amazed->tab_room);
     return 0;
 }
