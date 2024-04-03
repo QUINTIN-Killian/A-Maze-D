@@ -18,6 +18,7 @@ SRC	=	src/draw_robots.c	\
 		src/recognition.c	\
 		src/end.c	\
 		src/room.c	\
+		src/compute_cost.c \
 		src/robot.c
 
 OBJ	=	$(SRC:src/%.c=bin/%.o)

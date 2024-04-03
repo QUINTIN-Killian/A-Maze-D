@@ -8,26 +8,25 @@
 
 #include "../include/amazed.h"
 
-/*
 int draw_rooms(amazed_t *amazed)
 {
-    linked_room_t *parse_rooms = amazed->room;
+    room_t **parse_rooms = amazed->tab_room;
     int *connected;
 
-    while (parse_rooms != NULL) {
+    for (int i = 0; i < amazed->nb_room; i++) {
         my_putstr("ID:");
-        my_put_nbr(parse_rooms->room_id);
-        my_putstr(" (");
-        my_putstr(parse_rooms->name);
-        my_putstr(")");
-        connected = parse_rooms->close_rooms;
+        my_put_nbr(parse_rooms[i]->id);
+        my_putstr(" NAME:");
+        my_putstr(parse_rooms[i]->name);
+        my_putstr(" COST:");
+        my_put_nbr(parse_rooms[i]->cost);
+        my_putstr(" | ");
+        connected = parse_rooms[i]->close_rooms;
         for (int i = 0; connected[i] != -1; i++) {
             my_putstr(" -> ");
             my_put_nbr(connected[i]);
         }
         my_putchar('\n');
-        parse_rooms = parse_rooms->next;
     }
     return 0;
 }
-*/

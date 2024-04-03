@@ -80,4 +80,7 @@ void add_close_rooms(amazed_t *amazed);
 robot_t *create_robot(int id, int room_id);
 void create_tab_robot(amazed_t *amazed);
 
+//compute_cost.c
+int compute_cost(amazed_t *amazed);
+
 #endif
