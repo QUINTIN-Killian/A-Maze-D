@@ -102,6 +102,21 @@ static void add_id_in_close_rooms(amazed_t *amazed, int dest_room_id,
     }
 }
 
+void set_explored(amazed_t *amazed)
+{
+    int len;
+
+    for (int i = 0; amazed->tab_room[i] != NULL; i++) {
+        len = 0;
+        for (int j = 0; amazed->tab_room[i]->close_rooms[j] != -1; j++)
+            len++;
+        amazed->tab_room[i]->explored = malloc(sizeof(int) * (len + 1));
+        for (int j = 0; j < len; j++)
+            amazed->tab_room[i]->explored[j] = 0;
+        amazed->tab_room[i]->explored[len] = -1;
+    }
+}
+
 void add_close_rooms(amazed_t *amazed)
 {
     char **tmp;
@@ -116,4 +131,5 @@ void add_close_rooms(amazed_t *amazed)
             free_word_array(tmp);
         }
     }
+    set_explored(amazed);
 }

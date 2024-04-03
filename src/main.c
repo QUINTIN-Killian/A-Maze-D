@@ -57,6 +57,7 @@ static void destroy_struct(amazed_t *amazed)
         for (int i = 0; amazed->tab_room[i] != NULL; i++) {
             free(amazed->tab_room[i]->name);
             free(amazed->tab_room[i]->close_rooms);
+            free(amazed->tab_room[i]->explored);
             free(amazed->tab_room[i]);
         }
         free(amazed->tab_room);
