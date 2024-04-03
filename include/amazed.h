@@ -27,7 +27,6 @@ typedef struct room_s {
     int x;
     int y;
     int *close_rooms;
-    int *explored;
 } room_t;
 
 typedef struct amazed_s {
