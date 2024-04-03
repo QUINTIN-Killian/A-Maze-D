@@ -26,10 +26,12 @@ $(LIB_NAME):	$(OBJ)
 	cp $(H_NAME) ../../include
 
 bin/%.o:	%.c
+	@mkdir -p bin
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	rm -f $(OBJ)
+	@rm -rf bin
 
 fclean:	clean
 	rm -f $(LIB_NAME) ../../$(LIB_NAME)

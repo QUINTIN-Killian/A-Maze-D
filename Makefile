@@ -35,10 +35,12 @@ $(EXEC):	$(OBJ)
 	$(CC) -o $(EXEC) $(OBJ) -L. -lmy $(CFLAGS)
 
 bin/%.o:	src/%.c
+	@mkdir -p bin
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	rm -f $(OBJ)
+	@rm -rf bin
 	make clean -C lib/my
 
 fclean:	clean
