@@ -66,7 +66,7 @@ char *del_comments(char *line)
     return tmp;
 }
 
-static char *edit_line(char *line)
+static char *edit_line(amazed_t *amazed, char *line, int n)
 {
     char *ans;
     char **tmp = separate_words(line, " \t\n");
@@ -79,24 +79,29 @@ static char *edit_line(char *line)
     ans = del_comments(line);
     if (ans == NULL)
         return my_strdup(" ");
-    if (!is_flag(ans) && !is_nb_robot(ans) && !is_room(ans) && !is_tunnel(ans))
+    if (!line_getter1(amazed, ans, n)) {
+        free(ans);
         return NULL;
+    }
     return ans;
 }
 
 void get_file(amazed_t *amazed)
 {
+    int n = -1;
     char **tmp = NULL;
     char *line = my_scanf();
 
-    line = edit_line(line);
+    line = edit_line(amazed, line, n);
+    n++;
     while (line != NULL) {
         tmp = my_tabdup(amazed->file);
         add_line_in_tab(amazed, tmp, line);
         free_word_array(tmp);
         free(line);
         line = my_scanf();
-        line = edit_line(line);
+        line = edit_line(amazed, line, n);
+        n++;
     }
 }
 
@@ -124,31 +129,4 @@ void del_blank_lines(char **tab)
         }
         free_word_array(tmp);
     }
-}
-
-int get_nb_robot(char **tab)
-{
-    int ans = 0;
-
-    for (int i = 0; i < my_strlen_array(tab); i++) {
-        if (is_nb_robot(tab[i])) {
-            ans = convert_str_in_int(tab[i]);
-            break;
-        }
-    }
-    if (ans == 0)
-        mini_fdprintf(2, "There must be at least 1 robot.\n");
-    return ans;
-}
-
-int get_nb_room(char **tab)
-{
-    int ans = 0;
-
-    for (int i = 0; i < my_strlen_array(tab); i++)
-        if (is_room(tab[i]))
-            ans++;
-    if (ans < 2)
-        mini_fdprintf(2, "There must be at least 2 rooms.\n");
-    return ans;
 }

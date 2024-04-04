@@ -30,8 +30,11 @@ typedef struct room_s {
 } room_t;
 
 typedef struct amazed_s {
+    bool one_start;
+    bool one_end;
     int nb_robot;
     int nb_room;
+    int nb_tunnel;
     char **file;
     int id_start;
     int id_end;
@@ -49,11 +52,9 @@ int get_nb_robot(char **tab);
 int get_nb_room(char **tab);
 
 //error_handling.c :
-bool multiple_flags(char **tab);
 bool check_room_after_flag(char **tab);
-bool check_file_content(char **tab);
-bool check_correct_tunnel(amazed_t *amazed);
-bool is_unique_room(room_t **tab_room);
+bool check_correct_tunnel(char **file, char *tunnel);
+bool is_unique_room(char **file, char *room);
 
 //draw_rooms.c :
 int draw_rooms(amazed_t *amazed);
@@ -81,5 +82,8 @@ void create_tab_robot(amazed_t *amazed);
 
 //compute_cost.c
 int compute_cost(amazed_t *amazed);
+
+//line_getter.c :
+bool line_getter1(amazed_t *amazed, char *line, int n);
 
 #endif

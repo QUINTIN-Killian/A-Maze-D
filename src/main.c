@@ -7,6 +7,7 @@
 */
 /*
 NOTES ET OBJECTIFS :
+    - vérifier si la map est faisable
     - afficher avec la bonne mise en forme à la fin (voir
     maps/labyrinth_error2)
 */
@@ -15,31 +16,44 @@ NOTES ET OBJECTIFS :
 
 static bool error_handling_struct(amazed_t *amazed)
 {
-    if (amazed->file == NULL || amazed->file[0] == NULL) {
-        mini_fdprintf(2, "The file is empty after deleting useless lines.\n");
+    if (amazed->nb_robot == -1 || amazed->nb_robot == 0) {
+        mini_fdprintf(2,
+        "The number of robot is absent, negative or equal to 0.\n");
         return False;
     }
-    if (amazed->nb_robot == 0 || amazed->nb_room < 2 ||
-    multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||
-    !check_file_content(amazed->file) || !is_unique_room(amazed->tab_room) ||
-    !check_correct_tunnel(amazed))
+    if (amazed->nb_room < 2) {
+        mini_fdprintf(2, "There must be minimum 2 rooms.\n");
         return False;
+    }
+    if (!check_room_after_flag(amazed->file))
+        return False;
+    if (amazed->nb_tunnel <= 0) {
+        mini_fdprintf(2, "There must be at least one tunnel.\n");
+        return False;
+    }
     return True;
 }
 
 static bool init_struct(amazed_t *amazed)
 {
+    amazed->one_start = False;
+    amazed->one_end = False;
     amazed->file = NULL;
     amazed->tab_robot = NULL;
     amazed->tab_room = NULL;
+    amazed->nb_robot = -1;
+    amazed->nb_room = 0;
+    amazed->nb_tunnel = 0;
     get_file(amazed);
     if (amazed->file == NULL || amazed->file[0] == NULL) {
         mini_fdprintf(2, "The file is empty after deleting useless lines.\n");
         return False;
     }
     del_blank_lines(amazed->file);
-    amazed->nb_robot = get_nb_robot(amazed->file);
-    amazed->nb_room = get_nb_room(amazed->file);
+    if (amazed->file == NULL || amazed->file[0] == NULL) {
+        mini_fdprintf(2, "The file is empty after deleting useless lines.\n");
+        return False;
+    }
     create_tab_room(amazed);
     return error_handling_struct(amazed);
 }
