@@ -56,18 +56,6 @@ bool check_room_after_flag(char **tab)
     return True;
 }
 
-bool check_file_content(char **tab)
-{
-    for (int i = 0; i < my_strlen_array(tab); i++) {
-        if (!is_flag(tab[i]) && !is_nb_robot(tab[i]) && !is_room(tab[i]) &&
-        !is_tunnel(tab[i])) {
-            mini_fdprintf(2, "A line is incorrect.\n");
-            return False;
-        }
-    }
-    return True;
-}
-
 static bool check_correct_tunnel_aux(amazed_t *amazed, int i)
 {
     int ans = 0;

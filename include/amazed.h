@@ -55,7 +55,6 @@ int get_nb_tunnel(char **tab);
 //error_handling.c :
 bool multiple_flags(char **tab);
 bool check_room_after_flag(char **tab);
-bool check_file_content(char **tab);
 bool check_correct_tunnel(amazed_t *amazed);
 bool is_unique_room(room_t **tab_room);
 

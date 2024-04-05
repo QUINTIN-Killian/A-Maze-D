@@ -18,8 +18,7 @@ static bool error_handling_struct(amazed_t *amazed)
 {
     if (amazed->nb_robot == 0 || amazed->nb_room < 2 || amazed->nb_tunnel == 0
     || multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||
-    !check_file_content(amazed->file) || !is_unique_room(amazed->tab_room) ||
-    !check_correct_tunnel(amazed))
+    !is_unique_room(amazed->tab_room) || !check_correct_tunnel(amazed))
         return False;
     return True;
 }
