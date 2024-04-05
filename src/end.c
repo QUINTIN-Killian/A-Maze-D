@@ -36,3 +36,12 @@ void print_end(amazed_t *amazed)
     mini_printf("#moves\n");
     mini_printf("COMING SOON !\n");
 }
+
+void print_error_file(amazed_t *amazed)
+{
+    mini_printf("#number_of_robots\n");
+    if (amazed->nb_robot != -1)
+        mini_printf("%d\n", amazed->nb_robot);
+    mini_printf("#rooms\n");
+    print_rooms(amazed->file);
+}
