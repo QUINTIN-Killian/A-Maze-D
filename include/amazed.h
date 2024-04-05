@@ -70,6 +70,7 @@ bool is_tunnel(char *str);
 
 //end.c :
 void print_end(amazed_t *amazed);
+void print_error_file(amazed_t *amazed);
 
 //room.c :
 room_t *create_room(int id, char *name, int x, int y);

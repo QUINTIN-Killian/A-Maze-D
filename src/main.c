@@ -82,6 +82,7 @@ int main(void)
     amazed_t amazed;
 
     if (!init_struct(&amazed)) {
+        print_error_file(&amazed);
         destroy_struct(&amazed);
         return 84;
     }
