@@ -38,6 +38,10 @@ static bool init_struct(amazed_t *amazed)
         return False;
     }
     del_blank_lines(amazed->file);
+    if (amazed->file == NULL || amazed->file[0] == NULL) {
+        mini_fdprintf(2, "The file is empty after deleting useless lines.\n");
+        return False;
+    }
     amazed->nb_robot = get_nb_robot(amazed->file);
     amazed->nb_room = get_nb_room(amazed->file);
     create_tab_room(amazed);
