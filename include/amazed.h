@@ -32,6 +32,7 @@ typedef struct room_s {
 typedef struct amazed_s {
     int nb_robot;
     int nb_room;
+    int nb_tunnel;
     char **file;
     int id_start;
     int id_end;
@@ -45,8 +46,11 @@ char *my_scanf(void);
 //file.c :
 void get_file(amazed_t *amazed);
 void del_blank_lines(char **tab);
+
+//getter.c :
 int get_nb_robot(char **tab);
 int get_nb_room(char **tab);
+int get_nb_tunnel(char **tab);
 
 //error_handling.c :
 bool multiple_flags(char **tab);

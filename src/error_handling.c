@@ -98,7 +98,8 @@ bool check_correct_tunnel(amazed_t *amazed)
 static bool is_unique_room_aux(room_t **tab_room, int i)
 {
     for (int j = i + 1; tab_room[j] != NULL; j++)
-        if (my_strcmp(tab_room[i]->name, tab_room[j]->name) == 0)
+        if (my_strcmp(tab_room[i]->name, tab_room[j]->name) == 0 ||
+        (tab_room[i]->x == tab_room[j]->x && tab_room[i]->y == tab_room[j]->y))
             return False;
     return True;
 }
@@ -107,7 +108,8 @@ bool is_unique_room(room_t **tab_room)
 {
     for (int i = 0; tab_room[i] != NULL; i++) {
         if (!is_unique_room_aux(tab_room, i)) {
-            mini_fdprintf(2, "A room name is not unique.\n");
+            mini_fdprintf(2,
+            "Several rooms have the same name or coordinates.\n");
             return False;
         }
     }
