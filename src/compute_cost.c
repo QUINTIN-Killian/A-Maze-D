@@ -23,7 +23,7 @@ int compute_recursive(int cost, int pos, amazed_t *params, int error)
     for (int i = 0; adjacent_rooms[i] != -1; i++) {
         if (rooms[adjacent_rooms[i]]->cost == -1 ||
         rooms[adjacent_rooms[i]]->cost > cost) {
-            error = compute_recursive(cost + 1, adjacent_rooms[i], rooms, error);
+            error = compute_recursive(cost + 1, adjacent_rooms[i], params, error);
         }
     }
     return error;
@@ -31,7 +31,7 @@ int compute_recursive(int cost, int pos, amazed_t *params, int error)
 
 int compute_cost(amazed_t *amazed)
 {
-    int error = compute_recursive(0, amazed->id_end, amazed->tab_room, 1);
+    int error = compute_recursive(0, amazed->id_end, amazed, 1);
 
     if (error == 1) {
         write(2, "Error : unreachable end room\n", 29);
