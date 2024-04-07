@@ -20,7 +20,8 @@ SRC	=	src/draw_robots.c	\
 		src/room.c	\
 		src/compute_cost.c \
 		src/robot.c	\
-		src/getter.c
+		src/getter.c	\
+		src/movements.c
 
 OBJ	=	$(SRC:src/%.c=bin/%.o)
 

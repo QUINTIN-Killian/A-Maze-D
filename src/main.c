@@ -77,6 +77,7 @@ int main(void)
     add_close_rooms(&amazed);
     compute_cost(&amazed);
     print_end(&amazed);
+    move_robots(&amazed);
     destroy_struct(&amazed);
     return 0;
 }

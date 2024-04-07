@@ -34,7 +34,6 @@ void print_end(amazed_t *amazed)
     mini_printf("#tunnels\n");
     print_tunnels(amazed->file);
     mini_printf("#moves\n");
-    mini_printf("COMING SOON !\n");
 }
 
 void print_error_file(amazed_t *amazed)
@@ -44,4 +43,13 @@ void print_error_file(amazed_t *amazed)
         mini_printf("%d\n", amazed->nb_robot);
     mini_printf("#rooms\n");
     print_rooms(amazed->file);
+}
+
+void print_robots_moves(int id, int nb, bool *print_space)
+{
+    if (*print_space)
+        mini_printf(" ");
+    else
+        *print_space = True;
+    mini_printf("P%d-%d", id + 1, nb);
 }

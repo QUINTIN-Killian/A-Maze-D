@@ -12,6 +12,7 @@ room_t *create_room(int id, char *name, int x, int y)
 {
     room_t *room = malloc(sizeof(room_t));
 
+    room->occupied = False;
     room->cost = -1;
     room->id = id;
     room->name = my_strdup(name);

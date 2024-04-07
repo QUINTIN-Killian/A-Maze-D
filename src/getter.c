@@ -46,3 +46,13 @@ int get_nb_tunnel(char **tab)
         mini_fdprintf(2, "The end room can not be reached.\n");
     return ans;
 }
+
+room_t *get_room_by_id(amazed_t *amazed, int id)
+{
+    if (id < 0)
+        return NULL;
+    for (int i = 0; amazed->tab_room[i] != NULL; i++)
+        if (amazed->tab_room[i]->id == id)
+            return amazed->tab_room[i];
+    return NULL;
+}

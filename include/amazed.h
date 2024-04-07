@@ -21,6 +21,7 @@ typedef struct robot_s {
 } robot_t;
 
 typedef struct room_s {
+    bool occupied;
     int cost;
     int id;
     char *name;
@@ -51,6 +52,7 @@ void del_blank_lines(char **tab);
 int get_nb_robot(char **tab);
 int get_nb_room(char **tab);
 int get_nb_tunnel(char **tab);
+room_t *get_room_by_id(amazed_t *amazed, int id);
 
 //error_handling.c :
 bool multiple_flags(char **tab);
@@ -73,6 +75,7 @@ bool is_tunnel(char *str);
 //end.c :
 void print_end(amazed_t *amazed);
 void print_error_file(amazed_t *amazed);
+void print_robots_moves(int id, int nb, bool *print_space);
 
 //room.c :
 room_t *create_room(int id, char *name, int x, int y);
@@ -85,5 +88,8 @@ void create_tab_robot(amazed_t *amazed);
 
 //compute_cost.c
 int compute_cost(amazed_t *amazed);
+
+//movements.c :
+void move_robots(amazed_t *amazed);
 
 #endif
