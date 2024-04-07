@@ -75,7 +75,10 @@ int main(void)
     }
     create_tab_robot(&amazed);
     add_close_rooms(&amazed);
-    compute_cost(&amazed);
+    if (compute_cost(&amazed) == 84) {
+        destroy_struct(&amazed);
+        return 84;
+    }
     print_end(&amazed);
     move_robots(&amazed);
     destroy_struct(&amazed);
