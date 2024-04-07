@@ -65,7 +65,7 @@ static void move_robots_aux(amazed_t *amazed)
         room_tmp = get_room_by_id(amazed, next_id);
         amazed->tab_robot[i]->current_room = next_id;
         switch_room(amazed, room_ref, room_tmp);
-        print_robots_moves(i, next_id, &print_space);
+        print_robots_moves(i, room_tmp->name, &print_space);
     }
 }
 

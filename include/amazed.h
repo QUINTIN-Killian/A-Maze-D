@@ -75,7 +75,7 @@ bool is_tunnel(char *str);
 //end.c :
 void print_end(amazed_t *amazed);
 void print_error_file(amazed_t *amazed);
-void print_robots_moves(int id, int nb, bool *print_space);
+void print_robots_moves(int id, char *name, bool *print_space);
 
 //room.c :
 room_t *create_room(int id, char *name, int x, int y);
