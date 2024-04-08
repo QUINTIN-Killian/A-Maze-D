@@ -1,38 +1,45 @@
 /*
-** EPITECH PROJECT, 2023
-** clean_str.c
+** EPITECH PROJECT, 2024
+** amazed
 ** File description:
-** removes unwanted characters
+** clean a string by deleting all useless spaces
+** clean_str
 */
 
-#include "../../include/my.h"
+#include "my.h"
 
-int is_unwanted(char c, char *unwanted)
+static char *create_ans(char **tmp, int len_total)
 {
-    for (int i = 0; unwanted[i] != '\0'; i++) {
-        if (c == unwanted[i])
-            return 1;
-    }
-    return 0;
-}
+    int ind = 0;
+    char *ans = malloc(sizeof(char) * (len_total + 1));
 
-char *clean_str(char *str, char *unwanted)
-{
-    int length = 0;
-    int pos = 0;
-    char *result;
-
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (!is_unwanted(str[i], unwanted))
-            length++;
-    }
-    result = malloc(sizeof(char) * length + 1);
-    for (int i2 = 0; str[i2] != '\0'; i2++) {
-        if (!is_unwanted(str[i2], unwanted)) {
-            result[pos] = str[i2];
-            pos++;
+    for (int i = 0; i < my_strlen_array(tmp); i++) {
+        for (int j = 0; j < my_strlen(tmp[i]); j++) {
+            ans[ind] = tmp[i][j];
+            ind++;
         }
     }
-    result[length] = '\0';
-    return result;
+    ans[len_total] = '\0';
+    return ans;
+}
+
+char *clean_str(char *str, int destroy)
+{
+    char **tmp;
+    int len_total = 0;
+    char *ans;
+
+    if (str == NULL)
+        return NULL;
+    tmp = separate_words_on_spaces(str);
+    if (destroy)
+        free(str);
+    if (tmp == NULL)
+        return NULL;
+    for (int i = 0; i < my_strlen_array(tmp); i++)
+        len_total += my_strlen(tmp[i]);
+    len_total += my_strlen_array(tmp) - 1;
+    ans = create_ans(tmp, len_total);
+    free_word_array(tmp);
+    return ans;
 }
