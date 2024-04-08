@@ -26,13 +26,13 @@ int get_optimal_room_id(amazed_t *amazed, int *close_room)
         mini_fdprintf(2, "IMPASSE\n");
         return -1;
     }
-    if (room1->occupied == False)
+    if (room1->occupied == False && room1->cost >= 0)
         id_ref = room1->id;
     for (int i = 1; close_room[i] != -1; i++) {
         room2 = get_room_by_id(amazed, close_room[i]);
         if (room2->id == amazed->id_end)
             return room2->id;
-        if (room2->cost < room1->cost && room2->occupied == False)
+        if (room2->cost < room1->cost && room2->occupied == False && room2->cost >= 0)
             id_ref = room2->id;
     }
     return id_ref;
