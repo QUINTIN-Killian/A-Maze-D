@@ -79,6 +79,7 @@ int main(void)
         destroy_struct(&amazed);
         return 84;
     }
+    draw_rooms(&amazed);
     print_end(&amazed);
     move_robots(&amazed);
     destroy_struct(&amazed);
