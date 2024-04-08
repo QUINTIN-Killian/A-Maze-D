@@ -18,25 +18,25 @@ bool are_all_robots_arrived(amazed_t *amazed)
 
 int get_optimal_room_id(amazed_t *amazed, int *close_room)
 {
-    room_t *room1 = get_room_by_id(amazed, close_room[0]);
-    room_t *room2;
-    int id_ref = -1;
+    room_t *room;
+    room_t *room_ref = NULL;
 
-    if (room1 == NULL) {
-        mini_fdprintf(2, "IMPASSE\n");
+    if (close_room[0] == -1) {
+        mini_fdprintf(2, "Error get_optimal_room_id function : no way out.\n");
         return -1;
     }
-    if (room1->occupied == False && room1->cost >= 0)
-        id_ref = room1->id;
-    for (int i = 1; close_room[i] != -1; i++) {
-        room2 = get_room_by_id(amazed, close_room[i]);
-        if (room2->id == amazed->id_end)
-            return room2->id;
-        if (room2->cost < room1->cost && room2->occupied == False &&
-        room2->cost >= 0)
-            id_ref = room2->id;
+    for (int i = 0; close_room[i] != -1; i++) {
+        room = get_room_by_id(amazed, close_room[i]);
+        if (room->cost < 0 || room->occupied)
+            continue;
+        if (room->id == amazed->id_end)
+            return room->id;
+        if (room_ref == NULL || room->cost < room_ref->cost)
+            room_ref = room;
     }
-    return id_ref;
+    if (room_ref == NULL)
+        return -1;
+    return room_ref->id;
 }
 
 static void switch_room(amazed_t *amazed, room_t *room_ref, room_t *room_tmp)
