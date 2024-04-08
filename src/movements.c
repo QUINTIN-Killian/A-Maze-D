@@ -32,8 +32,8 @@ int get_optimal_room_id(amazed_t *amazed, int *close_room)
         room2 = get_room_by_id(amazed, close_room[i]);
         if (room2->id == amazed->id_end)
             return room2->id;
-        if (room2->cost < room1->cost && room2->occupied == False
-            && room2->cost >= 0)
+        if (room2->cost < room1->cost && room2->occupied == False &&
+        room2->cost >= 0)
             id_ref = room2->id;
     }
     return id_ref;
