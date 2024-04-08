@@ -76,5 +76,7 @@ int mini_fdprintf(int fd, const char *format, ...);
 void print_word_array(char **word_array);
 void multiple_free(int nb_free, ...);
 void multiple_free_word_array(int nb_free, ...);
+char *remove_unwanted_spaces(char *str);
+char *clean_str(char *str, char *unwanted);
 
 #endif
