@@ -8,14 +8,16 @@
 
 #include "../include/amazed.h"
 
-int is_dead_end(room_t **rooms, int *adjacent_rooms, int i)
+int is_dead_end(room_t **rooms, int *adjacent_rooms, int i, amazed_t *params)
 {
     room_t *current = rooms[adjacent_rooms[i]];
 
-    if (current->close_rooms[1] == -1
+    if ((current->close_rooms[1] == -1
     || (current->close_rooms[2] == -1 &&
     (rooms[current->close_rooms[0]]->cost == -2
-    || rooms[current->close_rooms[1]]->cost == -2))) {
+    || rooms[current->close_rooms[1]]->cost == -2))
+    ) && (rooms[adjacent_rooms[i]]->id != params->id_end
+    && rooms[adjacent_rooms[i]]->id != params->id_start)) {
         rooms[adjacent_rooms[i]]->cost = -2;
         return 1;
     }
@@ -33,7 +35,7 @@ int recursive_cost(int cost, int pos, amazed_t *params, int error)
         rooms[pos]->cost = cost;
     }
     for (int i = 0; adjacent_rooms[i] != -1; i++) {
-        if (!is_dead_end(rooms, adjacent_rooms, i) &&
+        if (!is_dead_end(rooms, adjacent_rooms, i, params) &&
         (rooms[adjacent_rooms[i]]->cost == -1 ||
         rooms[adjacent_rooms[i]]->cost > cost)) {
             error = recursive_cost(cost + 1, adjacent_rooms[i], params, error);
