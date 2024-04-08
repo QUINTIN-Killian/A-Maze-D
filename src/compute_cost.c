@@ -44,13 +44,13 @@ int recursive_cost(int cost, int pos, amazed_t *params, int error)
     return error;
 }
 
-int compute_cost(amazed_t *amazed)
+bool compute_cost(amazed_t *amazed)
 {
     int error = recursive_cost(0, amazed->id_end, amazed, 1);
 
     if (error == 1) {
         mini_fdprintf(2, "The end room can not be reached.\n");
-        return 84;
+        return False;
     }
-    return 0;
+    return True;
 }
