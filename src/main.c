@@ -7,7 +7,6 @@
 */
 /*
 NOTES ET OBJECTIFS :
-    - vérifier que le parcours est réalisable (cant reach end)
     - afficher avec la bonne mise en forme à la fin (voir
     maps/labyrinth_error2)
 */
