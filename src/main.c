@@ -18,8 +18,8 @@ static bool error_handling_struct(amazed_t *amazed)
     if (amazed->nb_robot == 0 || amazed->nb_room < 2 || amazed->nb_tunnel == 0
     || multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||
     !is_unique_room(amazed->tab_room) || !check_correct_tunnel(amazed))
-        return False;
-    return True;
+        return false;
+    return true;
 }
 
 static bool init_struct(amazed_t *amazed)
@@ -30,12 +30,12 @@ static bool init_struct(amazed_t *amazed)
     get_file(amazed);
     if (amazed->file == NULL || amazed->file[0] == NULL) {
         mini_fdprintf(2, "The file is empty after deleting useless lines.\n");
-        return False;
+        return false;
     }
     del_blank_lines(amazed->file);
     if (amazed->file == NULL || amazed->file[0] == NULL) {
         mini_fdprintf(2, "The file is empty after deleting useless lines.\n");
-        return False;
+        return false;
     }
     amazed->nb_robot = get_nb_robot(amazed->file);
     amazed->nb_room = get_nb_room(amazed->file);

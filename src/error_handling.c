@@ -46,14 +46,14 @@ bool check_room_after_flag(char **tab)
     for (int i = 0; i < my_strlen_array(tab); i++) {
         if (my_strcmp(tab[i], "##start") == 0 && !is_room(tab[i + 1])) {
             mini_fdprintf(2, "There must be a room after '##start'.\n");
-            return False;
+            return false;
         }
         if (my_strcmp(tab[i], "##end") == 0 && !is_room(tab[i + 1])) {
             mini_fdprintf(2, "There must be a room after '##end'.\n");
-            return False;
+            return false;
         }
     }
-    return True;
+    return true;
 }
 
 static bool check_correct_tunnel_aux(amazed_t *amazed, int i)
@@ -77,10 +77,10 @@ bool check_correct_tunnel(amazed_t *amazed)
         if (is_tunnel(amazed->file[i]) &&
         !check_correct_tunnel_aux(amazed, i)) {
             mini_fdprintf(2, "A tunnel does not refer to an existing room.\n");
-            return False;
+            return false;
         }
     }
-    return True;
+    return true;
 }
 
 static bool is_unique_room_aux(room_t **tab_room, int i)
@@ -88,8 +88,8 @@ static bool is_unique_room_aux(room_t **tab_room, int i)
     for (int j = i + 1; tab_room[j] != NULL; j++)
         if (my_strcmp(tab_room[i]->name, tab_room[j]->name) == 0 ||
         (tab_room[i]->x == tab_room[j]->x && tab_room[i]->y == tab_room[j]->y))
-            return False;
-    return True;
+            return false;
+    return true;
 }
 
 bool is_unique_room(room_t **tab_room)
@@ -98,8 +98,8 @@ bool is_unique_room(room_t **tab_room)
         if (!is_unique_room_aux(tab_room, i)) {
             mini_fdprintf(2,
             "Several rooms have the same name or coordinates.\n");
-            return False;
+            return false;
         }
     }
-    return True;
+    return true;
 }

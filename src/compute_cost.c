@@ -50,7 +50,7 @@ bool compute_cost(amazed_t *amazed)
 
     if (error == 1) {
         mini_fdprintf(2, "The end room can not be reached.\n");
-        return False;
+        return false;
     }
-    return True;
+    return true;
 }

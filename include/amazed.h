@@ -10,11 +10,6 @@
     #define AMAZED_H_
     #include "my.h"
 
-typedef enum boolean {
-    False,
-    True
-} bool;
-
 typedef struct robot_s {
     int robot_id;
     int current_room;

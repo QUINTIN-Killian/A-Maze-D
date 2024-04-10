@@ -50,6 +50,6 @@ void print_robots_moves(int id, char *name, bool *print_space)
     if (*print_space)
         mini_printf(" ");
     else
-        *print_space = True;
+        *print_space = true;
     mini_printf("P%d-%s", id + 1, name);
 }

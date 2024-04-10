@@ -12,7 +12,7 @@ room_t *create_room(int id, char *name, int x, int y)
 {
     room_t *room = malloc(sizeof(room_t));
 
-    room->occupied = False;
+    room->occupied = false;
     room->cost = -1;
     room->id = id;
     room->name = my_strdup(name);
@@ -67,8 +67,8 @@ static bool is_id_present(int *tab, int id)
 {
     for (int i = 0; tab[i] != -1; i++)
         if (tab[i] == id)
-            return True;
-    return False;
+            return true;
+    return false;
 }
 
 static int *add_id_in_close_rooms_aux(int *tab, int id)
