@@ -27,8 +27,7 @@ int get_optimal_room_id(amazed_t *amazed, room_t *current_room)
     }
     for (int i = 0; current_room->close_rooms[i] != -1; i++) {
         room = get_room_by_id(amazed, current_room->close_rooms[i]);
-        if (room->cost < 0 || room->occupied || current_room->cost <=
-        room->cost)
+        if (room->cost < 0 || room->occupied)
             continue;
         if (room->id == amazed->id_end)
             return room->id;
