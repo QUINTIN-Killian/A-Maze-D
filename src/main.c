@@ -17,7 +17,7 @@ static int error_handling_struct(amazed_t *amazed)
 {
     if (amazed->nb_robot == 0 || amazed->nb_room < 2 || amazed->nb_tunnel == 0
     || multiple_flags(amazed->file) || !check_room_after_flag(amazed->file) ||
-    !is_unique_room(amazed->tab_room) || !check_correct_tunnel(amazed))
+    !is_unique_room(amazed->tab_room))
         return 0;
     return 1;
 }
@@ -63,23 +63,35 @@ static void destroy_struct(amazed_t *amazed)
     }
 }
 
+static int exec_error_handling(amazed_t *amazed)
+{
+    if (!init_struct(amazed)) {
+        print_error_file(amazed);
+        destroy_struct(amazed);
+        return 1;
+    }
+    if (!check_correct_tunnel(amazed)) {
+        print_end(amazed, 1);
+        destroy_struct(amazed);
+        return 1;
+    }
+    return 0;
+}
+
 int main(void)
 {
     amazed_t amazed;
 
-    if (!init_struct(&amazed)) {
-        print_error_file(&amazed);
-        destroy_struct(&amazed);
+    if (exec_error_handling(&amazed))
         return 84;
-    }
     create_tab_robot(&amazed);
     add_close_rooms(&amazed);
     if (!compute_cost(&amazed)) {
-        print_error_file(&amazed);
+        print_end(&amazed, 2);
         destroy_struct(&amazed);
         return 84;
     }
-    print_end(&amazed);
+    print_end(&amazed, 3);
     move_robots(&amazed);
     destroy_struct(&amazed);
     return 0;

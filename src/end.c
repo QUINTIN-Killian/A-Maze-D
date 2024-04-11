@@ -27,13 +27,18 @@ static void print_tunnels(char **tab)
     }
 }
 
-void print_end(amazed_t *amazed)
+void print_end(amazed_t *amazed, int step)
 {
-    mini_printf("#number_of_robots\n%d\n#rooms\n", amazed->nb_robot);
-    print_rooms(amazed->file);
-    mini_printf("#tunnels\n");
-    print_tunnels(amazed->file);
-    mini_printf("#moves\n");
+    if (step >= 1) {
+        mini_printf("#number_of_robots\n%d\n#rooms\n", amazed->nb_robot);
+        print_rooms(amazed->file);
+    }
+    if (step >= 2) {
+        mini_printf("#tunnels\n");
+        print_tunnels(amazed->file);
+    }
+    if (step >= 3)
+        mini_printf("#moves\n");
 }
 
 void print_error_file(amazed_t *amazed)
