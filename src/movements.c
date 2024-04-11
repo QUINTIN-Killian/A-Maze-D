@@ -45,7 +45,7 @@ static void switch_room(amazed_t *amazed, room_t *room_ref, room_t *room_tmp)
         room_ref->cost--;
         room_ref->occupied = 0;
     }
-    if (room_tmp->id != amazed->id_end) {
+    if (room_tmp->id != amazed->id_end && room_tmp->id != amazed->id_start) {
         room_tmp->cost++;
         room_tmp->occupied = 1;
     }
