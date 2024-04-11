@@ -45,11 +45,11 @@ void print_error_file(amazed_t *amazed)
     print_rooms(amazed->file);
 }
 
-void print_robots_moves(int id, char *name, bool *print_space)
+void print_robots_moves(int id, char *name, int *print_space)
 {
     if (*print_space)
         mini_printf(" ");
     else
-        *print_space = true;
+        *print_space = 1;
     mini_printf("P%d-%s", id + 1, name);
 }

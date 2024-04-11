@@ -8,12 +8,12 @@
 
 #include "../include/amazed.h"
 
-bool are_all_robots_arrived(amazed_t *amazed)
+int are_all_robots_arrived(amazed_t *amazed)
 {
     for (int i = 0; amazed->tab_robot[i] != NULL; i++)
         if (amazed->tab_robot[i]->current_room != amazed->id_end)
-            return false;
-    return true;
+            return 0;
+    return 1;
 }
 
 int get_optimal_room_id(amazed_t *amazed, int *close_room)
@@ -43,11 +43,11 @@ static void switch_room(amazed_t *amazed, room_t *room_ref, room_t *room_tmp)
 {
     if (room_ref->id != amazed->id_start) {
         room_ref->cost--;
-        room_ref->occupied = false;
+        room_ref->occupied = 0;
     }
     if (room_tmp->id != amazed->id_end) {
         room_tmp->cost++;
-        room_tmp->occupied = true;
+        room_tmp->occupied = 1;
     }
 }
 
@@ -56,7 +56,7 @@ static void move_robots_aux(amazed_t *amazed)
     room_t *room_ref;
     room_t *room_tmp;
     int next_id;
-    bool print_space = false;
+    int print_space = 0;
 
     for (int i = 0; amazed->tab_robot[i] != NULL; i++) {
         if (amazed->tab_robot[i]->current_room == amazed->id_end)
