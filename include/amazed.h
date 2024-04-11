@@ -68,7 +68,7 @@ int is_room(char *str);
 int is_tunnel(char *str);
 
 //end.c :
-void print_end(amazed_t *amazed);
+void print_end(amazed_t *amazed, int step);
 void print_error_file(amazed_t *amazed);
 void print_robots_moves(int id, char *name, int *print_space);
 
