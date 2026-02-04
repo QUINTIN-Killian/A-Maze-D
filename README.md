@@ -46,5 +46,5 @@ Example:
 ## 👥 Authors
 
 * [@Killian QUINTIN](https://github.com/QUINTIN-Killian)
-* [Noë GEBERT](https://github.com/noe-gt)
-* [Elie CHARDIN](https://github.com/Elieleche)
+* [@Noë GEBERT](https://github.com/noe-gt)
+* [@Elie CHARDIN](https://github.com/Elieleche)
