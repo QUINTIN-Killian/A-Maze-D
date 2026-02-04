@@ -1,12 +1,12 @@
 # A-Maze-D
 
-A-Maze-D is a project in which robots must find their way in a maze.
+A C-based multi-agent pathfinding simulation where a fleet of robots must navigate a maze toward an exit, requiring a centralized scheduling system to prevent occupancy conflicts and optimize flow.
 
 ---
 
 ## 🧠 Description
 
-Each robot must find an end of the current maze. The difficulty is that only one robot can be present in a maze's node, meaning that we have to prevent traffic jams and redirect them when possible.
+This project implements a discrete-time simulation of robot movement within a graph-based maze structure. The core constraint dictates that each room (node) can host a maximum of one robot per time step (tick), necessitating the development of a traffic management algorithm to redirect units and resolve bottlenecks.
 
 ---
 
@@ -32,6 +32,12 @@ make
 **Executing:**
 
 ```bash
+./amazed < <maze_file>
+```
+
+Example:
+
+```bash
 ./amazed < bonus/scripts/maze
 ```
 
@@ -40,5 +46,5 @@ make
 ## 👥 Authors
 
 * [@Killian QUINTIN](https://github.com/QUINTIN-Killian)
-* Noë GEBERT
-* Elie CHARDIN
+* [Noë GEBERT](https://github.com/noe-gt)
+* [Elie CHARDIN](https://github.com/Elieleche)
